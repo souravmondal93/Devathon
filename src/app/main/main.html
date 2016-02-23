@@ -1,0 +1,384 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 col-md-offset-6">
+            View Booking Info
+        </div>
+        <div class="col-md-3 col-md-offset-1">
+            Sign Up | Log in or F-Connect
+        </div>
+    </div>
+
+    <div class="row">
+        CheckIn Tonight
+    </div>
+
+    <div class="row">
+        <!--Content-->
+        <div class="row" ng-hide="main.showSearchPanel">
+            <div class="col-md-10">
+                <div class="form-group">
+                    <input type="text" ng-model="main.searchCity" placeholder="Search" uib-typeahead="address for address in main.getCity($viewValue)" ng-model-options="{ debounce: 1000 }" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
+                    <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                    <div ng-show="noResults">
+                        <i class="glyphicon glyphicon-remove"></i> No Results Found
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <button class="btn btn-block btn-warning" ng-click="main.search()">Search</button>
+            </div>
+            <div class="col-md-1">
+                <button class="btn btn-block btn-warning" ng-click="main.showPanel()">More</button>
+            </div>
+        </div>
+
+        <div class="row" ng-show="main.showSearchPanel">
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="form-group col-sm-12">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label class="col-sm-3">Check-In</label>
+                        <div class="col-sm-8">
+                            <label class="radio-inline">
+                                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Tonight
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Tomorrow Night
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-3">Book for</label>
+                    <div class="col-sm-8">
+                        {{main.nightCount}} Night &nbsp;
+                        <i class="fa fa-plus-square" ng-click="main.incrementNightCount()"></i> &nbsp;
+                        <i class="fa fa-minus-square" ng-click="main.decrementNightCount()"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7 col-md-offset-1 form-horizontal">
+                <div class="row">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Rooms&nbsp;</label>
+                        <div class="col-sm-2">
+                            <select class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Room {{1}}</label>
+                        <div class="col-sm-2">
+                            <select class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <label class="col-sm-1 control-label">Adults</label>
+                        <div class="col-sm-2">
+                            <select class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <label class="col-sm-2 control-label">Children (0-12)</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Room {{1}}</label>
+                        <div class="col-sm-2">
+                            <select class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <label class="col-sm-1 control-label">Adults</label>
+                        <div class="col-sm-2">
+                            <select class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <label class="col-sm-2 control-label">Children (0-12)</label>
+                        <button class="btn btn-warning col-sm-2 col-sm-offset-1">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5">
+            Recent Views: Taj Krishna | Taj Banjara | Grand Hyatt | More
+        </div>
+        <div class="col-md-4 col-md-offset-1">
+            Star Rating:
+            <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckbox1" value="option1" checked> 3 Star
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckbox2" value="option2"> 4 Star
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckbox3" value="option3"> 5 Star
+            </label>
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-warning">Modify Search</button> &nbsp;
+            <i class="glyphicon glyphicon-chevron-up" ng-show="main.showSearchPanel" ng-click="main.collapsePanel()"></i>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12" ng-hide="main.twoColumnLayout">
+            <div class="row" ng-repeat="hotels in main.hotelList.HotelInfo">
+                <div class="col-md-2">
+                    <img src={{hotels.ThumbnailUrl}} class="img-rounded">
+                </div>
+                <div class="col-md-10">
+                    <div class="row">
+                        <div class="col-md-11">
+                            <h3 style="margin-top: 5px;">{{hotels.Name}}</h3>
+                        </div>
+                        <div class="col-md-1">
+                            <i class="fa fa-arrow-right fa-lg" ng-click="main.twoColumnExpand($index)"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p>
+                                {{hotels.Location.StreetAddress}} , {{hotels.Location.City}}
+                            </p>
+                            <br>
+                            <span>
+                                <uib-rating ng-model="hotels.StarRating" readonly="true" aria-labelledby="default-rating"></uib-rating>
+                            </span>
+                        </div>
+                        <div class="col-md-4">
+                            <p>
+                                Rs 8,000 for tonight <br>
+                                Rs 7,500 for tomorrow night <br>
+                                Rs 9,000 beyond tomorrow
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>
+                                {{hotels.FeaturedOffer.Price.TotalRate.Currency}} {{hotels.FeaturedOffer.Price.TotalRate.Value}} <br>
+                                taxes and charges included
+                            </p>
+                            <span>
+                                <i class="fa fa-male fa-lg"></i>
+                                <i class="fa fa-product-hunt fa-lg"></i>
+                                <i class="fa fa-life-ring fa-lg text-muted"></i>
+                                <i class="fa fa-cutlery fa-lg"></i>
+                                <i class="fa fa-child fa-lg"></i>
+                                <i class="fa fa-wifi fa-lg"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <hr style="width: 100%; height: 1px;">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6" ng-show="main.twoColumnLayout">
+            <div class="row" ng-repeat="hotels in main.hotelList.HotelInfo">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <h4 style="margin: 0;">{{hotels.Name}}</h4>
+                        </div>
+                        <div class="col-sm-4">
+                            <uib-rating ng-model="hotels.StarRating" readonly="true" aria-labelledby="default-rating"></uib-rating>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p style="margin-bottom: 2px;">
+                                {{hotels.Location.StreetAddress}} , {{hotels.Location.City}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img src={{hotels.ThumbnailUrl}} class="img-rounded">
+                        </div>
+                        <div class="col-md-10">
+                            <p style="margin-bottom: 2px;">
+                                Rs 8,000 for tonight <br>
+                                Rs 7,500 for tomorrow night <br>
+                                Rs 9,000 beyond tomorrow <br>
+                                Total: {{hotels.FeaturedOffer.Price.TotalRate.Currency}} {{hotels.FeaturedOffer.Price.TotalRate.Value}} taxes and charges included
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <hr style="width: 100%; height: 1px; margin-bottom: 10px;">
+            </div>
+        </div>
+        <div class="col-md-6" ng-show="main.twoColumnLayout">
+            <br>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <button class="btn btn-primary">Overview</button>
+                            <button class="btn btn-default">Facilities</button>
+                            <button class="btn btn-default">Map</button>
+                            <button class="btn btn-default">Photos</button>
+                        </div>
+                        <div class="col-md-2">
+                            <i class="fa fa-close" ng-click="main.twoColumnCollapse()">&nbsp; Close</i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>{{main.selectedHotel.Name}}</h3>
+                        </div>
+                        <div class="col-md-12">
+                            <uib-rating ng-model="main.selectedHotel.StarRating" readonly="true" aria-labelledby="default-rating"></uib-rating>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img src={{main.selectedHotel.ThumbnailUrl}}>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="row">
+                                <p>
+                                    {{main.selectedHotel.Location.StreetAddress}}, {{main.selectedHotel.Location.City}}, {{main.selectedHotel.Location.Province}}
+                                    (<a>View on Map</a>) <br>
+                                    +00 0000000000
+                                </p>
+                            </div>
+                            <div class="row">
+                                <span>
+                                    <i class="fa fa-male fa-lg"></i>
+                                    <i class="fa fa-product-hunt fa-lg"></i>
+                                    <i class="fa fa-life-ring fa-lg text-muted"></i>
+                                    <i class="fa fa-cutlery fa-lg"></i>
+                                    <i class="fa fa-child fa-lg"></i>
+                                    <i class="fa fa-wifi fa-lg"></i>
+                                </span>
+                            </div>
+                            <div class="row">
+                                Check-in: 12:00 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Check-in: 11:00
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <br>
+                        <div class="col-sm-9">
+                            {{main.selectedHotel.Description}}
+                        </div>
+                        <div class="col-sm-3">
+                            <button class="btn btn-warning btn-block">Book</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <br>
+                        <div class="col-sm-12">
+                            Room Type
+                        </div>
+                        <div class="col-sm-11 col-md-offset-1">
+                                <label class="radio-inline">
+                                    <input type="radio" name="roomType" value="Standard" ng-model="main.roomType" ng-value="true"> Standard
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="roomType" value="Deluxe" ng-model="main.roomType"> Deluxe
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="roomType" value="Super Deluxe" ng-model="main.roomType"> Super Deluxe
+                                </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <br>
+                            <div class="well" style="padding-bottom: 0;">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>2 {{main.roomType}} Rooms</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Today</td>
+                                        <td>Rs 16,000 <small class="text-muted">(8000 x 2)</small></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tomorrow</td>
+                                        <td>Rs 15,000 <small class="text-muted">(7500 x 2)</small></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Remaining 2 days</td>
+                                        <td>Rs 36,000 <small class="text-muted">(9000 x 2 x 2)</small></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Extra Bedding Charges</td>
+                                        <td>Rs 2,000 <small class="text-muted">(500 x 2 x 2)</small></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Taxes</td>
+                                        <td>Rs 500</td>
+                                    </tr>
+                                    <tr>
+                                        <td><h3 style="margin-bottom: 2px; margin-top: 2px;">Total</h3></td>
+                                        <td><h3 style="margin-bottom: 2px; margin-top: 2px;">Rs 69, 500</h3></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a>Hotel Policies</a> | <a>Hotel Amenities</a> | <a>Room Description</a> | <a>Room Amenities</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="row">
+            <div class="col-md-3 col-md-offset-1">
+                G+1 LIKE xxxx people like us
+            </div>
+            <div class="col-md-5 col-md-offset-3">
+                Home | About Us | Terms of Use | Privacy Policy | FAQ | Contact | FB
+            </div>
+        </div>
+        <div class="row">
+            Copyright C 2011 CheckInTonight | All Rights Reserved
+        </div>
+
+    </div>
+</div>
